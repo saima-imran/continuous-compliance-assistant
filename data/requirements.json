@@ -1,0 +1,20 @@
+[
+  {
+    "id": "REQ-001",
+    "title": "Human oversight",
+    "description": "The system shall allow an authorised human operator to review and override high-impact AI decisions.",
+    "source": "Example system specification",
+    "obligation_ids": [
+      "OBL-001"
+    ]
+  },
+  {
+    "id": "REQ-002",
+    "title": "Decision logging",
+    "description": "The system shall record AI recommendations, operator actions, and final decisions.",
+    "source": "Example system specification",
+    "obligation_ids": [
+      "OBL-002"
+    ]
+  }
+]

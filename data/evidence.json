@@ -1,0 +1,13 @@
+[
+  {
+    "id": "EVD-001",
+    "title": "Override interface test",
+    "description": "The test verifies that an authorised operator can reject and override an AI recommendation.",
+    "source": "Test report",
+    "requirement_ids": [
+      "REQ-001"
+    ],
+    "evidence_type": "Test Report",
+    "status": "passed"
+  }
+]
