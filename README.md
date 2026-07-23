@@ -1,161 +1,152 @@
- Continuous Compliance Assistant
+# Continuous Compliance Assistant
+
+> A modular Python application that demonstrates compliance traceability, risk assessment, and explainable reporting using structured software engineering principles.
+
+![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Portfolio%20Project-success)
+![Architecture](https://img.shields.io/badge/Architecture-Modular-orange)
+
+---
+
+## Table of Contents
 
-A Python-Based Software Engineering Project for ComplianceTraceability, Risk Assessment, and Explainable Reporting
+- [Overview](#overview)
+- [Project Objectives](#project-objectives)
+- [Features](#features)
+- [System Architecture](#system-architecture)
+- [Application Workflow](#application-workflow)
+- [Project Structure](#project-structure)
+- [Module Responsibilities](#module-responsibilities)
+- [Data Model](#data-model)
+- [Risk Assessment](#risk-assessment)
+- [Recommendation Engine](#recommendation-engine)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Example Output](#example-output)
+- [Design Decisions](#design-decisions)
+- [Software Engineering Principles](#software-engineering-principles)
+- [Future Improvements](#future-improvements)
+- [Author](#author)
 
+---
 
+# Overview
 
-📚 Table of Contents
+The **Continuous Compliance Assistant** is a Python-based software engineering project that demonstrates how regulatory obligations can be traced through software requirements and supporting engineering evidence.
 
-Introduction
+The application analyses compliance coverage, evaluates regulatory risk, generates explainable recommendations, and produces structured reports in both Markdown and JSON.
 
-Project Motivation
+This project was developed as a software engineering portfolio demonstrating clean architecture, modular programming, data validation, traceability, and automated reporting.
 
-Continuous ComplianceBackground
+---
 
-Project Objectives
+# Project Objectives
 
-Key Features
+The project aims to demonstrate:
 
-System Architecture
+- Compliance traceability
+- Modular software architecture
+- Structured JSON processing
+- Data validation
+- Risk assessment
+- Explainable recommendation generation
+- Automated report generation
 
-Application Workflow
+---
 
-Project Structure
+# Features
 
-Module Responsibilities
+- Regulatory obligation management
+- Requirement traceability
+- Evidence management
+- Compliance coverage analysis
+- Risk assessment (High / Medium / Low)
+- Explainable recommendation engine
+- Evidence confidence tracking
+- Markdown report generation
+- JSON report generation
+- Modular Python architecture
 
-Data Model
+---
 
-Recommendation Engine
+# System Architecture
 
-Installation
+```text
+                 JSON DATA
 
-Running the Application
+        obligations.json
+        requirements.json
+        evidence.json
+               │
+               ▼
+        loaders.py
+               │
+               ▼
+        models.py
+               │
+               ▼
+        tracker.py
+               │
+               ▼
+        report.py
+          │         │
+          ▼         ▼
 
-Example Output
+ compliance_report.md
+ compliance_report.json
+```
 
-Design Decisions
+---
 
-Software Engineering Principles
+# Application Workflow
 
-Current Limitations
+```text
+Start Application
 
-Future Work
+        │
+        ▼
 
-Lessons Learned
+Load JSON Files
 
-Author
+        │
+        ▼
 
-📖 Introduction
+Validate Input Data
 
-Continuous Compliance Assistant is a modular Python application thatdemonstrates how software engineering practices can be applied toregulatory compliance.
+        │
+        ▼
 
-The project models three important artefacts:
+Create Data Models
 
-Compliance obligations
+        │
+        ▼
 
-Software requirements
+Perform Traceability
 
-Engineering evidence
+        │
+        ▼
 
-It analyses the relationships between them to determine compliancestatus, assess regulatory risk, generate recommendations, and produceexplainable reports in Markdown and JSON.
+Assess Compliance Risk
 
-The project is intended as a software engineering portfoliodemonstrating clean architecture, traceability, structured dataprocessing, and explainable rule-based decision making.
+        │
+        ▼
 
-🎯 Project Motivation
+Generate Recommendations
 
-Software systems in regulated domains must demonstrate compliancethroughout the development lifecycle rather than only at release time.
+        │
+        ▼
 
-This project explores a simplified Continuous Compliance workflow byconnecting regulatory obligations with software requirements andengineering evidence.
+Produce Reports
+```
 
-Instead of replacing engineers, the application supports them byproducing consistent, transparent compliance assessments.
+---
 
-🌍 Continuous Compliance Background
+# Project Structure
 
-Continuous Compliance integrates compliance activities into everydaysoftware development.
+```text
+continuous-compliance-assistant/
 
-This project demonstrates a simplified workflow:
-
-Define compliance obligations.
-
-Link obligations to software requirements.
-
-Record engineering evidence.
-
-Evaluate coverage.
-
-Assess risk.
-
-Produce explainable reports.
-
-🎯 Project Objectives
-
-Demonstrate traceability.
-
-Validate structured datasets.
-
-Assess compliance coverage.
-
-Evaluate regulatory risk.
-
-Generate recommendations.
-
-Produce Markdown and JSON reports.
-
-Showcase software engineering best practices.
-
-✨ Key Features
-
-Feature                       Description
-
-Compliance Traceability       Links obligations, requirements, andevidence.
-
-Risk Assessment               Supports High, Medium, and Low riskobligations.
-
-Recommendation Engine         Generates explainable recommendations.
-
-Evidence Confidence           Records confidence levels for engineeringevidence.
-
-Markdown Reporting            Human-readable compliance reports.
-
-JSON Reporting                Machine-readable output for integration.
-
-Modular Architecture          Separation of concerns across modules.
-
-🏗️ System Architecture
-
-flowchart TD
-
-A[obligations.json]
-B[requirements.json]
-C[evidence.json]
-
-A --> D(loaders.py)
-B --> D
-C --> D
-
-D --> E(models.py)
-E --> F(tracker.py)
-F --> G(report.py)
-
-G --> H[compliance_report.md]
-G --> I[compliance_report.json]
-
-🔄 Application Workflow
-
-flowchart TD
-A[python main.py] --> B[Load JSON files]
-B --> C[Validate data]
-C --> D[Create Python objects]
-D --> E[Trace obligations]
-E --> F[Evaluate compliance]
-F --> G[Assess risk]
-G --> H[Generate recommendations]
-H --> I[Create Markdown and JSON reports]
-
-📁 Project Structure
-
-ContinuousComplianceAssistant/
 │
 ├── data/
 │   ├── obligations.json
@@ -168,11 +159,11 @@ ContinuousComplianceAssistant/
 │
 ├── src/
 │   └── compliance_assistant/
-│       ├── models.py
+│       ├── __init__.py
 │       ├── loaders.py
+│       ├── models.py
 │       ├── tracker.py
-│       ├── report.py
-│       └── __init__.py
+│       └── report.py
 │
 ├── tests/
 │   └── test_placeholder.py
@@ -180,142 +171,193 @@ ContinuousComplianceAssistant/
 ├── main.py
 ├── requirements.txt
 └── README.md
+```
 
-📦 Module Responsibilities
+---
 
-Module                  Responsibility
+# Module Responsibilities
 
-main.py               Coordinates the application workflow.
+| Module | Responsibility |
+|---------|----------------|
+| `main.py` | Coordinates the complete application workflow |
+| `loaders.py` | Loads and validates JSON datasets |
+| `models.py` | Defines the project data models |
+| `tracker.py` | Performs traceability, compliance analysis, risk assessment, and recommendation generation |
+| `report.py` | Generates Markdown and JSON reports |
 
-models.py             Defines Obligation, Requirement, and Evidencedata models.
+---
 
-loaders.py            Loads and validates JSON datasets.
+# Data Model
 
-tracker.py            Performs traceability, compliance analysis,risk assessment, and recommendation generation.
+The application uses three primary entities.
 
-report.py             Produces Markdown and JSON reports.
+## Obligation
 
-🧩 Data Model
+Represents a regulatory obligation that must be satisfied.
 
-Entity                            Purpose
+## Requirement
 
-Obligation                        Represents a regulatory obligation.
+Represents one or more software requirements linked to obligations.
 
-Requirement                       Represents a software requirementlinked to obligations.
+## Evidence
 
-💡 Recommendation Engine
+Represents engineering artefacts that demonstrate implementation or verification.
+
+Each evidence record also stores a confidence level describing the reliability of the supporting evidence.
+
+---
+
+# Risk Assessment
+
+Each obligation includes a predefined priority level.
+
+The application combines:
+
+- compliance status
+- available evidence
+- obligation priority
+
+to determine the overall compliance risk.
+
+Supported priorities:
+
+- High
+- Medium
+- Low
+
+---
+
+# Recommendation Engine
 
 Recommendations are generated using transparent rule-based logic.
 
-Status              Typical Recommendation
+| Compliance Status | Recommendation |
+|-------------------|---------------|
+| Covered | Continue monitoring compliance. |
+| Partially Covered | Collect additional supporting evidence. |
+| Uncovered | Begin compliance activities immediately. |
 
-Covered             Continue monitoring compliance.Partially Covered   Add supporting evidence soon.Uncovered           Begin compliance activities or collect evidence.
+The recommendation engine is intentionally explainable, allowing every decision to be traced back to the available project data.
 
-The recommendation process is intentionally explainable so every outputcan be traced back to its inputs.
+---
 
-⚙️ Installation
+# Installation
 
-git clone <repository-url>
-cd ContinuousComplianceAssistant
+Clone the repository.
+
+```bash
+git clone https://github.com/yourusername/continuous-compliance-assistant.git
+```
+
+Navigate into the project.
+
+```bash
+cd continuous-compliance-assistant
+```
+
+Install dependencies.
+
+```bash
 pip install -r requirements.txt
+```
 
-▶️ Running the Application
+---
 
+# Running the Application
+
+Execute the application.
+
+```bash
 python main.py
+```
 
-Generated reports:
+Generated reports will be written to:
 
+```text
 output/compliance_report.md
+```
 
+and
+
+```text
 output/compliance_report.json
+```
 
-📄 Example Output
+---
 
-OBL-001
-Status: Covered
-Risk Level: High
-Priority: Low
-Confidence Level: High
+# Example Output
+
+```text
+Obligation: OBL-001
+
+Status:
+Covered
+
+Priority:
+High
+
+Evidence Confidence:
+High
 
 Recommendation:
 Continue monitoring compliance.
+```
 
-🧠 Design Decisions
+---
 
-Why JSON?
+# Design Decisions
 
-JSON keeps application data separate from business logic, makingdatasets easy to maintain.
+## Why JSON?
 
-Why Dataclasses?
+JSON separates application logic from project data and makes datasets easy to extend.
 
-Dataclasses provide clear, concise representations of domain entitieswhile reducing boilerplate code.
+## Why Dataclasses?
 
-Why Modular Architecture?
+Python dataclasses provide concise, readable, and maintainable representations of domain entities.
 
-Each module has a single responsibility, improving maintainability,readability, and extensibility.
+## Why Modular Design?
 
-Why Rule-Based Reasoning?
+Separating responsibilities across modules improves maintainability, readability, and future extensibility.
 
-Transparent rules make recommendations easy to understand, verify, andexplain.
+## Why Rule-Based Recommendations?
 
-🏛️ Software Engineering Principles
+Transparent rule-based reasoning provides predictable and explainable compliance decisions.
 
-Separation of Concerns
+---
 
-Modular Design
+# Software Engineering Principles
 
-Data Validation
+This project demonstrates:
 
-Traceability
+- Modular programming
+- Separation of concerns
+- Data validation
+- Explainable decision making
+- Automated report generation
+- Traceability
+- Version control with Git
+- Object-oriented design using dataclasses
 
-Explainable Decision Making
+---
 
-Automated Report Generation
+# Future Improvements
 
-Version Control with Git
+Potential future enhancements include:
 
-⚠️ Current Limitations
+- Comprehensive unit testing using pytest
+- Database integration
+- REST API
+- Interactive web dashboard
+- Data visualization
+- AI-assisted recommendation generation
+- Compliance knowledge graph integration
 
-Static JSON datasets
+---
 
-Rule-based recommendations
+# Author
 
-No database
+**Saima Imran**
 
-No web interface
+Software Engineering Portfolio Project
 
-Placeholder test suite
-
-🚀 Future Work
-
-Unit tests with pytest
-
-Database integration
-
-REST API
-
-Dashboard visualisation
-
-AI-assisted recommendation engine
-
-Knowledge graph integration
-
-📚 Lessons Learned
-
-This project strengthened practical understanding of:
-
-Modular Python application design
-
-Traceability in software engineering
-
-Data validation
-
-Rule-based reasoning
-
-Automated reporting
-
-Git and incremental development
-
-👤 Author
-
-Developed as a software engineering portfolio project demonstratingContinuous Compliance concepts using Python.
+This project demonstrates practical software engineering techniques applied to a simplified Continuous Compliance workflow, including traceability, risk assessment, explainable reporting, and modular Python development.
