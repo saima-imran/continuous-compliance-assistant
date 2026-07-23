@@ -3,12 +3,15 @@
     "id": "OBL-001",
     "title": "Human oversight obligation",
     "description": "High-risk AI systems shall support effective oversight by natural persons.",
-    "source": "EU AI Act example"
+    "source": "EU AI Act example",
+    "risk_level": "High"
   },
   {
     "id": "OBL-002",
     "title": "Logging obligation",
     "description": "The system shall support logging and traceability of important system events.",
-    "source": "EU AI Act example"
+    "source": "EU AI Act example",
+    "risk_level": "Medium"
+
   }
 ]

@@ -33,6 +33,7 @@ def build_traceability_report(requirements, obligations, evidence_items):
                 "obligation_id": obligation.id,
                 "obligation_title": obligation.title,
                 "status": status,
+                "risk_level": obligation.risk_level,
                 "requirement_ids": [
                     requirement.id for requirement in linked_requirements
                 ],

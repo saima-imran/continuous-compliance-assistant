@@ -36,10 +36,15 @@ def load_requirements(path):
 
 def load_obligations(path):
     records = _read_json(path)
-    _validate(records, {"id","title","description","source"}, "obligation")
+    _validate(
+        records,
+        {"id", "title", "description", "source", "risk_level"},
+        "obligation"
+    )
+
     return [ComplianceObligation(**r) for r in records]
 
 def load_evidence(path):
     records = _read_json(path)
-    _validate(records, {"id","title","description","source","requirement_ids","status"}, "evidence")
+    _validate(records, {"id","title","description","source","requirement_ids","status","evidence_type"}, "evidence")
     return [EvidenceItem(**r) for r in records]

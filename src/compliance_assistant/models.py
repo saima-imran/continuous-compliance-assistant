@@ -15,6 +15,7 @@ class ComplianceObligation:
     title: str
     description: str
     source: str
+    risk_level: str
 
 @dataclass
 class EvidenceItem:

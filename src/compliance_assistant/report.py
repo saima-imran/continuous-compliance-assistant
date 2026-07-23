@@ -31,16 +31,17 @@ def save_markdown_report(report, path):
             )
             recommended_action = "No immediate evidence action is required."
 
-    lines += [
-    f"## {item['obligation_id']} — {item['obligation_title']}",
-    f"- **Status:** {item['status']}",
-    f"- **Requirements:** {', '.join(item['requirement_ids']) or 'None'}",
-    f"- **Evidence:** {', '.join(item['evidence_ids']) or 'None'}",
-    f"- **Evidence types:** {', '.join(item['evidence_types']) or 'None'}",
-    f"- **Missing evidence:** {'Yes' if item['missing_evidence'] else 'No'}",
-    f"- **Explanation:** {explanation}",
-    f"- **Recommended action:** {recommended_action}",
-    "",
-]
+        lines += [
+            f"## {item['obligation_id']} — {item['obligation_title']}",
+            f"- **Status:** {item['status']}",
+            f"- **Risk level:** {item['risk_level']}",
+            f"- **Requirements:** {', '.join(item['requirement_ids']) or 'None'}",
+            f"- **Evidence:** {', '.join(item['evidence_ids']) or 'None'}",
+            f"- **Evidence types:** {', '.join(item['evidence_types']) or 'None'}",
+            f"- **Missing evidence:** {'Yes' if item['missing_evidence'] else 'No'}",
+            f"- **Explanation:** {explanation}",
+            f"- **Recommended action:** {recommended_action}",
+            "",
+        ]
 
     output.write_text("\n".join(lines), encoding="utf-8")
