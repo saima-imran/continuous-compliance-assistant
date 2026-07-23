@@ -28,12 +28,42 @@ def build_traceability_report(requirements, obligations, evidence_items):
         else:
             status = "uncovered"
 
+        if status == "covered":
+            recommendation = "Continue monitoring compliance."
+            priority = "Low"
+
+        elif status == "partially covered":
+            if obligation.risk_level == "High":
+                recommendation = "Immediate evidence collection required."
+                priority = "High"
+            elif obligation.risk_level == "Medium":
+                recommendation = "Add supporting evidence soon."
+                priority = "Medium"
+            else:
+                recommendation = "Schedule evidence collection."
+                priority = "Low"
+
+        else:
+            if obligation.risk_level == "High":
+                recommendation = (
+                    "Critical compliance gap. Immediate action required."
+                )
+                priority = "High"
+            elif obligation.risk_level == "Medium":
+                recommendation = "Compliance work should begin soon."
+                priority = "Medium"
+            else:
+                recommendation = "Plan future compliance activities."
+                priority = "Low"
+
         report.append(
             {
                 "obligation_id": obligation.id,
                 "obligation_title": obligation.title,
                 "status": status,
                 "risk_level": obligation.risk_level,
+                "priority": priority,
+                "recommendation": recommendation,
                 "requirement_ids": [
                     requirement.id for requirement in linked_requirements
                 ],
