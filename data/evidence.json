@@ -8,6 +8,7 @@
       "REQ-001"
     ],
     "evidence_type": "Test Report",
+    "confidence_level": "High",
     "status": "passed"
   }
 ]

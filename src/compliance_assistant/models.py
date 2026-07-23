@@ -26,3 +26,4 @@ class EvidenceItem:
     requirement_ids: List[str]
     status: str
     evidence_type: str
+    confidence_level: str

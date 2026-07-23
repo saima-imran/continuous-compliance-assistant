@@ -3,7 +3,10 @@ def build_traceability_report(requirements, obligations, evidence_items):
 
     for evidence in evidence_items:
         for requirement_id in evidence.requirement_ids:
-            evidence_by_requirement.setdefault(requirement_id, []).append(evidence)
+            evidence_by_requirement.setdefault(
+                requirement_id,
+                [],
+            ).append(evidence)
 
     report = []
 
@@ -18,7 +21,10 @@ def build_traceability_report(requirements, obligations, evidence_items):
 
         for requirement in linked_requirements:
             linked_evidence.extend(
-                evidence_by_requirement.get(requirement.id, [])
+                evidence_by_requirement.get(
+                    requirement.id,
+                    [],
+                )
             )
 
         if linked_requirements and linked_evidence:
@@ -34,11 +40,15 @@ def build_traceability_report(requirements, obligations, evidence_items):
 
         elif status == "partially covered":
             if obligation.risk_level == "High":
-                recommendation = "Immediate evidence collection required."
+                recommendation = (
+                    "Immediate evidence collection required."
+                )
                 priority = "High"
+
             elif obligation.risk_level == "Medium":
                 recommendation = "Add supporting evidence soon."
                 priority = "Medium"
+
             else:
                 recommendation = "Schedule evidence collection."
                 priority = "Low"
@@ -46,14 +56,21 @@ def build_traceability_report(requirements, obligations, evidence_items):
         else:
             if obligation.risk_level == "High":
                 recommendation = (
-                    "Critical compliance gap. Immediate action required."
+                    "Critical compliance gap. "
+                    "Immediate action required."
                 )
                 priority = "High"
+
             elif obligation.risk_level == "Medium":
-                recommendation = "Compliance work should begin soon."
+                recommendation = (
+                    "Compliance work should begin soon."
+                )
                 priority = "Medium"
+
             else:
-                recommendation = "Plan future compliance activities."
+                recommendation = (
+                    "Plan future compliance activities."
+                )
                 priority = "Low"
 
         report.append(
@@ -65,13 +82,20 @@ def build_traceability_report(requirements, obligations, evidence_items):
                 "priority": priority,
                 "recommendation": recommendation,
                 "requirement_ids": [
-                    requirement.id for requirement in linked_requirements
+                    requirement.id
+                    for requirement in linked_requirements
                 ],
                 "evidence_ids": [
-                    evidence.id for evidence in linked_evidence
+                    evidence.id
+                    for evidence in linked_evidence
                 ],
                 "evidence_types": [
-                    evidence.evidence_type for evidence in linked_evidence
+                    evidence.evidence_type
+                    for evidence in linked_evidence
+                ],
+                "confidence_levels": [
+                    evidence.confidence_level
+                    for evidence in linked_evidence
                 ],
                 "missing_evidence": status != "covered",
             }
