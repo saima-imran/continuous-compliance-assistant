@@ -3,70 +3,34 @@
 > A modular Python application that demonstrates compliance traceability, risk assessment, and explainable reporting using structured software engineering principles.
 
 ![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
+![SQLite](https://img.shields.io/badge/Database-SQLite-blue)
+![Testing](https://img.shields.io/badge/Testing-pytest-success)
+![CI](https://img.shields.io/badge/CI-GitHub%20Actions-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Portfolio%20Project-success)
-![Architecture](https://img.shields.io/badge/Architecture-Modular-orange)
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Project Objectives](#project-objectives)
-- [Features](#features)
-- [System Architecture](#system-architecture)
-- [Application Workflow](#application-workflow)
-- [Project Structure](#project-structure)
-- [Module Responsibilities](#module-responsibilities)
-- [Data Model](#data-model)
-- [Risk Assessment](#risk-assessment)
-- [Recommendation Engine](#recommendation-engine)
-- [Installation](#installation)
-- [Running the Application](#running-the-application)
-- [Example Output](#example-output)
-- [Design Decisions](#design-decisions)
-- [Software Engineering Principles](#software-engineering-principles)
-- [Future Improvements](#future-improvements)
-- [Author](#author)
 
 ---
 
 # Overview
 
-The **Continuous Compliance Assistant** is a Python-based software engineering project that demonstrates how regulatory obligations can be traced through software requirements and supporting engineering evidence.
+Continuous Compliance Assistant is a Python-based software engineering project that demonstrates how regulatory obligations can be traced through software requirements and supporting engineering evidence.
 
-The application analyses compliance coverage, evaluates regulatory risk, generates explainable recommendations, and produces structured reports in both Markdown and JSON.
+The application loads structured compliance data, stores it in an SQLite database, analyses traceability relationships, evaluates compliance risk, generates explainable recommendations, and produces reports in Markdown and JSON.
 
-This project was developed as a software engineering portfolio demonstrating clean architecture, modular programming, data validation, traceability, and automated reporting.
-
----
-
-# Project Objectives
-
-The project aims to demonstrate:
-
-- Compliance traceability
-- Modular software architecture
-- Structured JSON processing
-- Data validation
-- Risk assessment
-- Explainable recommendation generation
-- Automated report generation
+The project demonstrates software engineering concepts including modular architecture, relational database design, automated testing, and continuous integration.
 
 ---
 
 # Features
 
-- Regulatory obligation management
-- Requirement traceability
-- Evidence management
-- Compliance coverage analysis
-- Risk assessment (High / Medium / Low)
-- Explainable recommendation engine
-- Evidence confidence tracking
-- Markdown report generation
-- JSON report generation
-- Modular Python architecture
+- Load compliance data from JSON files
+- Store compliance information in SQLite
+- Manage obligations, requirements, and evidence
+- Support many-to-many traceability relationships
+- Assess compliance coverage and risk
+- Generate explainable recommendations
+- Produce Markdown and JSON reports
+- Automated testing using pytest
+- Continuous Integration with GitHub Actions
 
 ---
 
@@ -80,18 +44,18 @@ The project aims to demonstrate:
         evidence.json
                │
                ▼
-        loaders.py
+          loaders.py
                │
                ▼
-        models.py
+         database.py
                │
                ▼
-        tracker.py
+          tracker.py
                │
                ▼
-        report.py
-          │         │
-          ▼         ▼
+           report.py
+          │          │
+          ▼          ▼
 
  compliance_report.md
  compliance_report.json
@@ -103,40 +67,26 @@ The project aims to demonstrate:
 
 ```text
 Start Application
-
         │
         ▼
-
-Load JSON Files
-
+Load JSON Data
         │
         ▼
-
-Validate Input Data
-
+Validate Input
         │
         ▼
-
-Create Data Models
-
+Store in SQLite
         │
         ▼
-
 Perform Traceability
-
         │
         ▼
-
 Assess Compliance Risk
-
         │
         ▼
-
 Generate Recommendations
-
         │
         ▼
-
 Produce Reports
 ```
 
@@ -147,6 +97,9 @@ Produce Reports
 ```text
 continuous-compliance-assistant/
 
+├── .github/
+│   └── workflows/
+│       └── python-tests.yml
 │
 ├── data/
 │   ├── obligations.json
@@ -160,15 +113,20 @@ continuous-compliance-assistant/
 ├── src/
 │   └── compliance_assistant/
 │       ├── __init__.py
+│       ├── database.py
 │       ├── loaders.py
 │       ├── models.py
 │       ├── tracker.py
 │       └── report.py
 │
 ├── tests/
-│   └── test_placeholder.py
+│   ├── test_database.py
+│   ├── test_loaders.py
+│   ├── test_report.py
+│   └── test_tracker.py
 │
 ├── main.py
+├── pytest.ini
 ├── requirements.txt
 └── README.md
 ```
@@ -179,65 +137,44 @@ continuous-compliance-assistant/
 
 | Module | Responsibility |
 |---------|----------------|
-| `main.py` | Coordinates the complete application workflow |
-| `loaders.py` | Loads and validates JSON datasets |
-| `models.py` | Defines the project data models |
-| `tracker.py` | Performs traceability, compliance analysis, risk assessment, and recommendation generation |
+| `main.py` | Coordinates the application workflow |
+| `loaders.py` | Loads compliance data from JSON files |
+| `models.py` | Defines the project's data models |
+| `database.py` | Manages SQLite database operations |
+| `tracker.py` | Performs compliance analysis and traceability |
 | `report.py` | Generates Markdown and JSON reports |
 
 ---
 
-# Data Model
+# Database Design
 
-The application uses three primary entities.
+The SQLite database contains five tables.
 
-## Obligation
+| Table | Purpose |
+|--------|---------|
+| obligations | Stores regulatory obligations |
+| requirements | Stores software requirements |
+| evidence | Stores supporting engineering evidence |
+| requirement_obligations | Links requirements to obligations |
+| evidence_requirements | Links evidence to requirements |
 
-Represents a regulatory obligation that must be satisfied.
+Relationship model:
 
-## Requirement
-
-Represents one or more software requirements linked to obligations.
-
-## Evidence
-
-Represents engineering artefacts that demonstrate implementation or verification.
-
-Each evidence record also stores a confidence level describing the reliability of the supporting evidence.
-
----
-
-# Risk Assessment
-
-Each obligation includes a predefined priority level.
-
-The application combines:
-
-- compliance status
-- available evidence
-- obligation priority
-
-to determine the overall compliance risk.
-
-Supported priorities:
-
-- High
-- Medium
-- Low
-
----
-
-# Recommendation Engine
-
-Recommendations are generated using transparent rule-based logic.
-
-| Compliance Status | Recommendation |
-|-------------------|---------------|
-| Covered | Continue monitoring compliance. |
-| Partially Covered | Collect additional supporting evidence. |
-| Uncovered | Begin compliance activities immediately. |
-
-The recommendation engine is intentionally explainable, allowing every decision to be traced back to the available project data.
+```text
+Obligations
+      ▲
+      │
+Requirement_Obligations
+      │
+      ▼
+Requirements
+      ▲
+      │
+Evidence_Requirements
+      │
+      ▼
+Evidence
+```
 
 ---
 
@@ -255,6 +192,26 @@ Navigate into the project.
 cd continuous-compliance-assistant
 ```
 
+Create a virtual environment (optional).
+
+```bash
+python -m venv .venv
+```
+
+Activate the virtual environment.
+
+**Windows**
+
+```bash
+.venv\Scripts\activate
+```
+
+**Linux/macOS**
+
+```bash
+source .venv/bin/activate
+```
+
 Install dependencies.
 
 ```bash
@@ -265,13 +222,13 @@ pip install -r requirements.txt
 
 # Running the Application
 
-Execute the application.
+Run the application.
 
 ```bash
 python main.py
 ```
 
-Generated reports will be written to:
+Generated reports are written to:
 
 ```text
 output/compliance_report.md
@@ -285,19 +242,41 @@ output/compliance_report.json
 
 ---
 
+# Running the Tests
+
+Run the complete test suite.
+
+```bash
+pytest
+```
+
+Run only the database tests.
+
+```bash
+pytest tests/test_database.py -v
+```
+
+GitHub Actions automatically executes the test suite whenever code is pushed to the repository.
+
+---
+
 # Example Output
 
 ```text
-Obligation: OBL-001
+Obligation:
+Protect personal data
 
-Status:
+Requirement:
+Encrypt stored personal data
+
+Evidence:
+Encryption test report
+
+Compliance Status:
 Covered
 
-Priority:
-High
-
-Evidence Confidence:
-High
+Risk:
+Low
 
 Recommendation:
 Continue monitoring compliance.
@@ -305,23 +284,15 @@ Continue monitoring compliance.
 
 ---
 
-# Design Decisions
+# Technologies Used
 
-## Why JSON?
-
-JSON separates application logic from project data and makes datasets easy to extend.
-
-## Why Dataclasses?
-
-Python dataclasses provide concise, readable, and maintainable representations of domain entities.
-
-## Why Modular Design?
-
-Separating responsibilities across modules improves maintainability, readability, and future extensibility.
-
-## Why Rule-Based Recommendations?
-
-Transparent rule-based reasoning provides predictable and explainable compliance decisions.
+- Python
+- SQLite
+- JSON
+- pytest
+- Git
+- GitHub Actions
+- Markdown
 
 ---
 
@@ -329,28 +300,31 @@ Transparent rule-based reasoning provides predictable and explainable compliance
 
 This project demonstrates:
 
-- Modular programming
+- Modular architecture
 - Separation of concerns
+- Relational database design
+- Many-to-many relationships
 - Data validation
-- Explainable decision making
-- Automated report generation
-- Traceability
-- Version control with Git
-- Object-oriented design using dataclasses
+- Compliance traceability
+- Risk assessment
+- Explainable recommendation generation
+- Automated testing
+- Continuous integration
+- Structured report generation
 
 ---
 
 # Future Improvements
 
-Potential future enhancements include:
+Possible future enhancements include:
 
-- Comprehensive unit testing using pytest
-- Database integration
+- Command-line interface
 - REST API
-- Interactive web dashboard
-- Data visualization
-- AI-assisted recommendation generation
-- Compliance knowledge graph integration
+- Web dashboard
+- Authentication and user management
+- Support for additional compliance frameworks
+- AI-assisted compliance recommendations
+- Audit logging and version history
 
 ---
 
@@ -360,4 +334,4 @@ Potential future enhancements include:
 
 Software Engineering Portfolio Project
 
-This project demonstrates practical software engineering techniques applied to a simplified Continuous Compliance workflow, including traceability, risk assessment, explainable reporting, and modular Python development.
+This project demonstrates practical software engineering techniques for modelling continuous compliance, software traceability, relational database design, automated testing, and explainable reporting.
